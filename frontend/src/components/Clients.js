@@ -10,7 +10,7 @@ const GET_CLIENTS = gql`
             phone
         }
     }
-`
+`;
 
 export default function Clients() {
 
@@ -32,7 +32,7 @@ export default function Clients() {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.Clients.map(client => (
+                    {data.clients.map(client => (
                         <ClientRow key={client.id} client={client}/>
                     ))}
                 </tbody>

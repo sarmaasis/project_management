@@ -135,35 +135,35 @@ const mutation = new GraphQLObjectType({
             }
         },
         // update a project in db
-        // updateProject: {
-        //     type: ProjectType,
-        //     args: {
-        //         id: { type: GraphQLNonNull(GraphQLID)},
-        //         name: { type: GraphQLString},
-        //         description: { type: GraphQLString},
-        //         status: {
-        //             type: new GraphQLEnumType({
-        //                 name: 'ProjectStatusUpdate',
-        //                 values: {
-        //                     'new': { value: 'Not Started'},
-        //                     'progress': { value: 'In Progress' },
-        //                     'completed': { values: 'Completed' },
-        //                 },
-        //             }),
-        //         },
-        //         resolve(parent,args){
-        //             return project.findByIdAndUpdate(args.id,{
-        //                 $set: {
-        //                     name: args.name,
-        //                     description: args.description,
-        //                     status: args.status
-        //                 }
-        //             },
-        //             {new: true},
-        //             );
-        //         }
-        //     },
-        // },
+        updateProject: {
+            type: ProjectType,
+            args: {
+                id: { type: GraphQLNonNull(GraphQLID)},
+                name: { type: GraphQLString},
+                description: { type: GraphQLString},
+                status: {
+                    type: new GraphQLEnumType({
+                        name: 'ProjectStatusUpdate',
+                        values: {
+                            'new': { value: 'Not Started'},
+                            'progress': { value: 'In Progress' },
+                            'completed': { values: 'Completed' },
+                        },
+                    }),
+                },
+            },
+            resolve(parent,args){
+                return project.findByIdAndUpdate(args.id,{
+                    $set: {
+                        name: args.name,
+                        description: args.description,
+                        status: args.status
+                    }
+                },
+                {new: true},
+                );
+            }
+        },
     },
 })
 
